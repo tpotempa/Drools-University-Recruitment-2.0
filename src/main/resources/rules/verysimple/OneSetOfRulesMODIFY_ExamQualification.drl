@@ -1,0 +1,56 @@
+package rules
+
+import pl.edu.pwsztar.universityrecruitment.UniversityCandidate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+// Informatyka
+rule "Exam Qualification / Informatyka (one_set_of_rules_MODIFY)"
+dialect "java"
+agenda-group "one_set_of_rules_MODIFY"
+when
+    $uc : UniversityCandidate(examResult > 100, fieldOfStudy == "Informatyka", counter < 10);
+then
+  	modify($uc) { 
+		setAdmission(Boolean.TRUE),
+    	setQualificationType("Exam qualification"),
+    	appendLogger("Agenda 'one_set_of_rules_MODIFY' got focus!"),
+		appendLogger("Agenda execution start date/time: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME)),       
+    	appendLogger("Rule 'Exam qualification / Informatyka' fired!"),
+		incrementCounter()
+    }    
+end
+
+// Automatyka i robotyka
+rule "Exam Qualification / Automatyka i robotyka (one_set_of_rules_MODIFY)"
+dialect "java"
+agenda-group "one_set_of_rules_MODIFY"
+when
+    $uc : UniversityCandidate(examResult > 60, fieldOfStudy == "Automatyka i robotyka", counter < 10);
+then
+  	modify($uc) { 
+		setAdmission(Boolean.TRUE),
+    	setQualificationType("Exam qualification"),
+    	appendLogger("Agenda 'one_set_of_rules_MODIFY' got focus!"),
+		appendLogger("Agenda execution start date/time: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME)),       
+    	appendLogger("Rule 'Exam qualification / Automatyka i robotyka' fired!"),
+		incrementCounter()
+    }    
+end
+
+// Elektrotechnika
+rule "Exam Qualification / Elektrotechnika (one_set_of_rules_MODIFY)"
+dialect "java"
+agenda-group "one_set_of_rules_MODIFY"
+when
+    $uc : UniversityCandidate(examResult > 80, fieldOfStudy == "Elektrotechnika", counter < 10);
+then
+  	modify($uc) { 
+		setAdmission(Boolean.TRUE),
+    	setQualificationType("Exam qualification"),
+    	appendLogger("Agenda 'one_set_of_rules_MODIFY' got focus!"),
+		appendLogger("Agenda execution start date/time: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME)),       
+    	appendLogger("Rule 'Exam qualification / Elektrotechnika' fired!"),
+		incrementCounter()
+    }        
+end
